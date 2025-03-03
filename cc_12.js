@@ -57,3 +57,18 @@ productForm.addEventListener('submit', (event) => { //Adding an event listener f
 function removeInventoryItem(item) { //Write a seperate function that removes a specific <li> when it is clicked
     inventoryList.removeChild(item); //Use removeChild within the inventory list to remove the clicked item.
 };
+
+//Task 4 - Demonstrated Event Bubbling in Customer Section
+const customerCards = document.querySelectorAll(".customer-card"); //using querySelectorAll to select all elements with the class customer cards
+const customerSection = document.getElementById("customerSection"); //using getElementById to get the parent container
+
+customerCards.forEach(card => { //Looping through customerCards array
+    card.addEventListener("click", (event) => { //Attach click event listeners to each customer card.
+        console.log(`User clicked ${event.target.textContent}`); //In the customer card's click event handler, log a message
+        event.stopPropagation(); //call stopPropagation() so that the parent's event handler does not trigger
+    });    
+});
+
+customerSection.addEventListener("click", () => { //Attach click event listener to the parent container card.
+    console.log(`User clicked customerSection`); //Logs a message
+});    
